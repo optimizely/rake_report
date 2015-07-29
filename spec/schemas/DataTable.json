@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "required": ["cols", "rows"],
+  "properties": {
+    "cols": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "c": {
+            "type": "array",
+            "items": {
+              "minItems": 3,
+              "maxItems": 5,
+              "type": "object",
+              "properties": {
+                "v": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
