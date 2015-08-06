@@ -1,0 +1,41 @@
+
+    <html>
+      <head>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript">
+          var jsonData = {"cols":[{"label":"task","type":"string"},{"label":"type","type":"string"},{"label":"start","type":"datetime"},{"label":"end","type":"datetime"}],"rows":[{"c":[{"v":"unit:create_comment"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 095)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 251)"}]},{"c":[{"v":"unit:destroy_comment"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 251)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 345)"}]},{"c":[{"v":"unit:create_image"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 095)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 442)"}]},{"c":[{"v":"unit:destroy_image"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 442)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 572)"}]},{"c":[{"v":"integration:create_image"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 095)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 643)"}]},{"c":[{"v":"unit:create_blog"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 095)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 692)"}]},{"c":[{"v":"integration:create_comment"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 251)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 741)"}]},{"c":[{"v":"lint"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 095)"},{"v":"Date(2015, 8, 6, 11, 24, 14, 744)"}]},{"c":[{"v":"integration:create_blog"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 345)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 260)"}]},{"c":[{"v":"unit:destroy_blog"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 692)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 303)"}]},{"c":[{"v":"integration:create_post"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 572)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 422)"}]},{"c":[{"v":"unit:create_post"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 15, 260)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 495)"}]},{"c":[{"v":"integration:destroy_comment"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 14, 741)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 663)"}]},{"c":[{"v":"integration:destroy_blog"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 15, 260)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 973)"}]},{"c":[{"v":"integration:destroy_image"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 15, 303)"},{"v":"Date(2015, 8, 6, 11, 24, 15, 979)"}]},{"c":[{"v":"integration:destroy_post"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 15, 422)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 321)"}]},{"c":[{"v":"unit:destroy_post"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 15, 495)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 413)"}]},{"c":[{"v":"objects"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 16, 414)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 414)"}]},{"c":[{"v":"integration"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 16, 414)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 414)"}]},{"c":[{"v":"unit"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 16, 414)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 779)"}]},{"c":[{"v":"test"},{"v":"execute"},{"v":"Date(2015, 8, 6, 11, 24, 16, 779)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 779)"}]},{"c":[{"v":"test"},{"v":"invoke"},{"v":"Date(2015, 8, 6, 11, 24, 14, 094)"},{"v":"Date(2015, 8, 6, 11, 24, 16, 779)"}]}]};
+
+          google.load("visualization", "1", {packages:["timeline"]});
+          google.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var dataTable = new google.visualization.DataTable(jsonData);
+            var container = document.getElementById('timeline');
+            var chart = new google.visualization.Timeline(container);
+
+            // If the number of rows exceeds the length of the color array
+            // the chart shows every row with the same color. This is prettier.
+            var color_palatte = ["#50ABD2","#78B653","#CAD04F","#ED913D","#E8182E"];
+            var colors = new Array();
+            for(var i=0; i < dataTable.getNumberOfRows(); i++) {
+              colors.push(color_palatte[i % color_palatte.length]);
+            }
+            var options = {
+              colors: colors,
+              timeline: {
+                showBarLabels: false,
+                colorByRowLabel: true,
+                groupByRowLabel: true
+              }
+            };
+
+            chart.draw(dataTable, options);
+          }
+        </script>
+      </head>
+      <body>
+        <div id="timeline" style="height: 100%"></div>
+      </body>
+    </html>
+    
