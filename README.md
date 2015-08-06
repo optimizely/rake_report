@@ -33,6 +33,10 @@ DataTable formatted for the Timeline visualization API:
 
 https://developers.google.com/chart/interactive/docs/gallery/timeline#data-format
 
+## Example Output
+
+![rake_report_test.html](/img/rake_report_test.png)
+
 ## Contributing
 
 1. Fork it ( https://github.com/optimizely/rake_report/fork )
