@@ -35,7 +35,7 @@ https://developers.google.com/chart/interactive/docs/gallery/timeline#data-forma
 
 ## Example Output
 
-![rake_report_test.html](/img/rake_report_test.png)
+[![rake_report_test.html](/img/rake_report_test.png)](/img/rake_report_test.htm)
 
 ## Contributing
 
