@@ -7,18 +7,17 @@ class RakeReportTemplate
     @template = template
     @timers = timers
   end
-  
+
   def template
     %q{
     <html>
       <head>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
           var jsonData = <%= timers.to_json %>;
 
-          google.load("visualization", "1", {packages:["timeline"]});
-          google.setOnLoadCallback(drawChart);
+          google.charts.load("current",{packages:["timeline"]});
+          google.charts.setOnLoadCallback(drawChart);
 
           function drawChart() {
             var dataTable = new google.visualization.DataTable(jsonData);
